@@ -1,0 +1,114 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    </head>
+    <body>
+        <h1 >Leave Management System</h1>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                             <form #myForm="ngForm">
+                                <div class="form-group">
+                                    <label for="Student Id">
+                                        Student Id
+                                    </label>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           name="stuId" 
+                                           #stuId="ngModel" ngModel
+                                           required
+                                           pattern="[0-9]+"
+                                            />
+                                </div>
+
+
+                                <div *ngIf="stuId.touched">
+                                  <div *ngIf="stuId.errors?.['required']">
+                                    <b style="color: red;">Student Id required.</b>
+                                  </div>
+                                  <div *ngIf="stuId.errors?.['pattern']">
+                                    <font color= "red"><b>Invalid Student Id.</b></font>
+                                  </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="Student Name">
+                                          Student Name
+                                    </label>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           name="stuName" 
+                                           #stuName="ngModel" ngModel
+                                           required
+                                           pattern="[a-z]+"
+                                            />
+
+                                  <div *ngIf="stuId.touched">
+                                  <div *ngIf="stuName.errors?.['required']">
+                                    <b style="color: red;">Student Name required.</b>
+                                  </div>
+                                  <div *ngIf="stuName.errors?.['pattern']">
+                                    <font color= "red"><b>Invalid Student Name.</b></font>
+                                  </div>
+                                </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Student Days">
+                                        Student Days
+                                    </label>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           name="stuDays" 
+                                           #stuDays="ngModel" ngModel
+                                           required
+                                           pattern="[0-9]+"
+                                           />
+                                </div>
+
+                                <div *ngIf="stuDays.touched">
+                                  <div *ngIf="stuDays.errors?.['required']">
+                                    <b style="color: red;">Student Days required.</b>
+                                  </div>
+                                  <div *ngIf="stuDays.errors?.['pattern']">
+                                    <font color= "red"><b>Invalid Student Days.</b></font>
+                                  </div>
+                                </div>
+                                
+
+                                                              
+                                <button class="btn btn-success "(click)="insertStudent(myForm.value)">
+                                    Insert 
+                                </button>
+                            &nbsp;&nbsp;
+                                <button class="btn btn-primary" (click)="updateStudent(myForm.value)" >
+                                    Update 
+                                </button>&nbsp;&nbsp;
+                                <button class="btn btn-danger" (click)="deleteStudent(myForm.value)">
+                                    Delete 
+                                </button>&nbsp;&nbsp;
+                                <button class="btn btn-warning" (click)="findStudent(myForm.value)" >
+                                    Find 
+                                </button>
+                                &nbsp;&nbsp;
+                                <button class="btn btn-info" (click)="findallStudent()">
+                                    Find All
+                                </button>
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+                <br>
+         <h3>{{result}}</h3>
+
+         <div class="micro" *ngIf="flag">
+          <table width="80%" align="center" class="table table-borderd">
+           <tr><th>Student Id</th><th>Student Name</th><th>Student Days</th></tr> 
+            <tr *ngFor="let stu of studentArr">
+                <td> {{stu.id}} </td><td> {{stu.stuName}} </td><td> {{stu.stuDays}} </td>
+            </tr>
+         </table>
+         </div>
+    </body>
+</html>
